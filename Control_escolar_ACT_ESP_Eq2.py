@@ -259,6 +259,6 @@ def menu_alumnos(sistema):
         
         else:
             print("Opción no válida. Intente de nuevo.")
-
 if __name__ == "__main__":
+
     menu_principal()
