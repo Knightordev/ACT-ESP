@@ -16,7 +16,7 @@ class Alumno(Persona):
         self.grado = grado
         self.grupo = grupo
         self.horario = {}  
-        self.factura = None   # relación con Factura
+        self.factura = None   
 
 class Factura:
     def __init__(self, alumno, inscripcion=0, otros_cargos=0):
@@ -56,7 +56,7 @@ class SistemaHorarios:
         self.alumnos.append(alumno)
         return alumno
     
-    # ---------------- FACTURACIÓN ----------------
+    
     def generar_factura(self, id_alumno, inscripcion, otros):
         alumno = self.buscar_alumno(id_alumno)
         if alumno:
@@ -75,7 +75,7 @@ class SistemaHorarios:
         else:
             print("Alumno no encontrado.")
     
-    # ---------------- HORARIOS ----------------
+    
     def asignar_horario_maestro(self, id_maestro, dia, hora_inicio, hora_fin, grupo):
         maestro = self.buscar_maestro(id_maestro)
         if maestro:
@@ -139,7 +139,7 @@ class SistemaHorarios:
         else:
             print(f"Alumno con ID {id_alumno} no encontrado")
 
-    # ---------------- NUEVAS FUNCIONES ----------------
+    
     def mostrar_horarios_maestro(self, id_maestro):
         maestro = self.buscar_maestro(id_maestro)
         if maestro:
@@ -169,14 +169,24 @@ class SistemaHorarios:
         else:
             print("Maestro no encontrado.")
 
-# ---------------- MENÚS ----------------
 
 def menu_principal():
     sistema = SistemaHorarios()
     
     # Datos de prueba
-    sistema.agregar_maestro("Juan Pérez", "MP001", "Matemáticas", 50)
-    sistema.agregar_alumno("Ana Torres", "AL001", "1", "A")
+    sistema.agregar_maestro("Juan Pérez", "MP001", "Matemáticas", 50) 
+    sistema.agregar_maestro("María García", "MP002", "Historia", 45) 
+    sistema.agregar_maestro("Carlos López", "MP003", "Ciencias", 55) 
+    
+    sistema.agregar_alumno("Ana Torres", "AL001", "1", "A") 
+    sistema.agregar_alumno("Luis Mendoza", "AL002", "1", "A") 
+    sistema.agregar_alumno("Sofía Ramírez", "AL003", "1", "B") 
+    
+    sistema.asignar_horario_maestro("MP001", "Lunes", 9, 11, "A") 
+    sistema.asignar_horario_maestro("MP001", "Miércoles", 9, 11, "A") 
+    sistema.asignar_horario_maestro("MP002", "Martes", 14, 16, "A") 
+    sistema.asignar_horario_maestro("MP003", "Jueves", 10, 12, "A") 
+    sistema.asignar_horario_maestro("MP001", "Lunes", 11, 13, "B")
     
     while True:
         print("\n=== SISTEMA ESCOLAR ===")
@@ -300,3 +310,4 @@ def menu_facturacion(sistema):
 
 if __name__ == "__main__":
     menu_principal()
+
